@@ -33,10 +33,3 @@ const user4: User2<string, number> = {
   age: "thirty",
   id: 1,
 };
-
-// 1
-// the yourPair object does not use the generic object type correctly, and throws a type error
-// we try to assign a string to the "first" property which expects a number and we assign a number to the "second" property which expects a string
-
-// 2
-// again, the yourPairs object throws a type error. The "values" property expects an array of strings, but the array has a number element at index 2
