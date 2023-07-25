@@ -1,11 +1,12 @@
-// generic array
-const numbers: Array<number> = [1, 2, 3];
+// 1
+// yes
 
-// generic array with multiple types using type union
-const numsAndStrings: Array<string | number> = [1,  "2"];
+// 2
+// yes
 
-// nested array
-const matrix: Array<Array<number>> = [
-  [1, 2],
-  [3, 4],
-];
+// 3
+// no
+
+// 4
+// not exactly
+// the array assigned to `fruits` is unassignable since it contains a string "mango" that isn't specified by the `FruitNames` type

@@ -1,35 +1,7 @@
-// Generic Object
-type User<T> = {
-  name: string;
-  age: T;
-};
+// 1
+// the `myPair` object uses generic objects correctly, but `yourPair` is not typed correctly
+// the first property is typed as `numbe`, but is assigned a `string`, and the `second` property is assigned a `number` but is typed as `string`
 
-const user1: User<number> = {
-  name: "John Doe",
-  age: 25,
-};
-
-const user2: User<string> = {
-  name: "Jane Doe",
-  age: "thirty",
-};
-
-// Generic Object with multiple generic types
-
-type User2<T1, T2> = {
-  name: string;
-  age: T1;
-  id: T2;
-};
-
-const user3: User2<number,string> = {
-  name: "John Doe",
-  age: 25,
-  id: "4d747fb8-bdb3-11ed-afa1-0242ac120002",
-};
-
-const user4: User2<string, number> = {
-  name: "Jane Doe",
-  age: "thirty",
-  id: 1,
-};
+// 2
+// again, `yourPairs` violates type safety
+// the generic object is typed `KeyValuePairs<number, string>` so that the `key` property takes a number, and the `values` property references an array of `string` values. The `values` array, however, contains a `number` value at index `2`, so a type error is thrown 
