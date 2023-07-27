@@ -1,27 +1,11 @@
 "use strict";
-// type Shape = Circle | Square;
-function isCircle(shape) {
-    return "radius" in shape;
-}
-let redShape = {
-    kind: "circle",
-    color: 'red',
-    radius: 5,
-};
-function sayShapeColor(shape) {
-    if (isCircle(shape)) {
-        console.log(`The circle is ${shape.color}`);
-        return;
-    }
-    console.log(`Shape is a square`);
-}
+// 1
+// we have types Vehicle, Motorcycle, and Car
+// parameter vehicle is typed as a union between the three types
+// we need to determine if the argument is a Car
+// the property that makes a Car unique is doors
+// if doors is in vehicle, return true
 function isCar(vehicle) {
-    // Implement this function
-    // if ("type" in vehicle) {
-    //   return vehicle.type === 'car';
-    // } else {
-    //   return false;
-    // }
     return "doors" in vehicle;
 }
 // Usage

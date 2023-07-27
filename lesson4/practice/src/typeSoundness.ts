@@ -1,50 +1,46 @@
 // 1
-// Create a reusable type guard function, `isNumber` to make our code safer when working with the following external code snippets
-// None of the examples throw compile-time errors
-// the type guard isNumber now prevents runtime errors
-
 // example 1
 let x: any = "Launch School";
-const y: number = x;
-console.log(y);
+let y: number;
+// const y: number = x;
+// console.log(y);
 
+if (isNumber(x)) {
+  y = x;
+} else {
+  console.log("x is not a number");
+}
 
 // example 2
 let x2: any = "Launch School";
-const y2: number = x as number;
+let y2: number;
+// const y2: number = x2 as number;
+if (isNumber(x2)) {
+    y2 = x2;
+} else {
+  console.log("x2 is not a number");
+}
 
 
 function isNumber(value: any): value is number {
-  // return !Number.isNaN(Number(value));
-  return typeof value === "number";
+  return typeof value === 'number';
 }
-
 
 console.log(isNumber(x)); // false
-console.log(isNumber(y)); // false
 console.log(isNumber(x2)); // false
-console.log(isNumber(y2)); // false
-
 
 // 2
-// create a utility function safeGet
-// allows access to elements in any array safely
-// takes an array and the index of the element in the array
-  // if the index is within bounds of the array, return the element at the index
-  // if not, return undefined
 
-const names: string[] = ["John", "Jane"];
-const name2 = safeGet(names, 2); // Should return undefined
-
-const numbers: number[] = [1, 2, 3];
-const number = safeGet(numbers, 1); // Should return 2
-
-function safeGet(arr: any[], idx: number): any {
-  if (idx < arr.length) {
-    return arr[idx];
+function safeGet(arr: (string|number)[], idx: number) {
+  if (idx > arr.length) {
+    return undefined;
+  } else {
+    return arr[idx]
   }
-  return undefined;
 }
 
-console.log(name2); // undefined
-console.log(number); // 2
+let arr: string[] = ['1', '2', '3'];
+let arr2: number[] = [1, 2, 3];
+
+console.log(safeGet(arr, 5));   // undefined
+console.log(safeGet(arr2, 1));  // 2

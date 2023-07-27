@@ -1,20 +1,19 @@
 "use strict";
 // 1
-// There won't be any type errors at compile time
-// There will be runtime errors, however, as we're calling methods that aren't defined on some of the values passed to the method
-// 2 
+// no, there will be no type errors because any effectively turns off the type checking system
+// the methods we call on the `input` value in `processInput` are not defined for all of the possible values passed as arguments, which will lead to runtime errors
+// 2
 function processInput(input) {
-    // use type guards
-    if (Array.isArray(input)) {
-        console.log(input.length);
-    }
-    else if (typeof input === 'string') {
+    if (typeof input === 'string') {
         console.log(input.toUpperCase());
     }
     else if (typeof input === 'number') {
         console.log(input.toFixed(2));
     }
+    else if (Array.isArray(input)) {
+        console.log(input.length);
+    }
 }
-processInput("hello"); // Outputs: HELLO
-processInput(42); // Outputs: 42.00
-processInput([1, 2, 3]); // Outputs: 3
+processInput("hello"); // HELLO
+processInput(42); // 42.00
+processInput([1, 2, 3]); // 3
