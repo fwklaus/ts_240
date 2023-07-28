@@ -1,27 +1,22 @@
 // 1
-// CustomArray describes both arrays and objects
-// function takes CustomArray argument
-// returns an array containing only the string elements in uppercase
 type CustomArray = {
   [index: number]: string | number;
 };
 
 const customArray: CustomArray = ["apple", 42, "banana"];
 
-function processCustomArray(arr: CustomArray) {
-  let returnArr = [];
-  if (Array.isArray(arr)) {
-    for (let i = 0; i < arr.length; i++) {
-      let element = arr[i];
-      if (typeof element === 'string') {
-        returnArr.push(element.toUpperCase());
+function processCustomArray(array: CustomArray): string[] {
+  if (Array.isArray(array)) {
+    return array.map(el => {
+      if (typeof el === 'string') {
+        return el.slice(0, 1).toUpperCase() + el.slice(1);
       } else {
-        continue;
+        return el;
       }
-    }    
+    });
   }
-  return returnArr;
+
+  return [];
 }
 
-console.log(processCustomArray(customArray));
-
+console.log(processCustomArray(customArray)); // ["Apple", 42, "Banana"];

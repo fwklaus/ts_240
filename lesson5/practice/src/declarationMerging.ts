@@ -1,9 +1,16 @@
 interface Mammal {
-  color: string;
+  name: string;
+  legs: number;
 }
 
-let cat: Mammal = {
-  name: "Bob",
-  legs: 4,
-  color: "white",
+interface Mammal {
+  color: string
 }
+
+let tiger: Mammal = {
+  name: "Tony",
+  legs: 4,
+  color: "Orange and black",
+}
+
+console.log(tiger); // { name: 'Tony', legs: 4, color: 'Orange and black' }
