@@ -1,12 +1,4 @@
 // 1
-// define a new interface, Shape, that encapsulates the shared properties of the interfaces
-// implement a function , displayShapeInfo, that accepts a Shape object
-  // returns a string with information about the shape
-  // verify the function works with both Rectangle and Circle objects
-
-// since interface Rectangle and Circle are both subtypes of Shape, due to structural typing, both types can be assigned to function parameter shape of type Shape at invocation
-// must narrow the Shape to access properties unique to Rectangle and Circle
-  
 interface Shape {
   color: string;
 }
@@ -20,32 +12,38 @@ interface Circle extends Shape {
   radius: number;
 }
 
-function isRectangle(obj: any): obj is Rectangle {
-  return obj.length;
+function isRectangle(shape: Shape): shape is Rectangle {
+  return "width" in shape;
 }
 
-function isCircle(obj: any): obj is Circle {
-  return obj.radius; 
+function isCircle(shape: Shape): shape is Circle {
+  return "radius" in shape;
 }
 
-function displayShapeInfo(shape: Shape) {
-  if (isRectangle(shape)) {
-    console.log(`The ${shape.color} rectangle is ${shape.length}cm long by ${shape.width}cm wide.`);
-  } else if (isCircle(shape)) {
-    console.log(`The ${shape.color} circle has a radius of ${shape.radius}cm.`);
+function displayShapeInfo(object: Shape): string {
+  if (isCircle(object)) {
+    let circumference = (2 * Math.PI * object.radius).toFixed(2);
+    return `The ${object.color} circle has a circumference ${circumference}cm`;
+  } else if (isRectangle(object)) {
+    return `The ${object.color} rectangle has an area of ${object.length * object.width}cm`;
+  } else {
+    throw new Error("Invalid Shape");
   }
 }
 
 let circle: Circle = {
-  radius: 20,
   color: "red",
+  radius: 5,
 }
 
 let rectangle: Rectangle = {
-  length: 10,
-  width: 5,
   color: "blue",
+  length: 4,
+  width: 2,
 }
 
-displayShapeInfo(circle);
-displayShapeInfo(rectangle);
+console.log(displayShapeInfo(circle)); 
+// The red circle has a circumference of 31.42cm
+
+console.log(displayShapeInfo(rectangle));
+// The blue rectangle has an area of 8cm
